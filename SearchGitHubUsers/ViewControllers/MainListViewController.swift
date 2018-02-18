@@ -16,6 +16,9 @@ class MainListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         setTableView()
     }
 
@@ -24,19 +27,21 @@ class MainListViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
+// MARK: - Private
 
-extension MainListViewController: UITableViewDataSource, UITableViewDelegate {
+extension MainListViewController {
     
     fileprivate func setTableView() {
         
         tableView.frame = CGRect(x: 0, y: 10, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
         self.view.addSubview(tableView)
     }
+}
+
+// MARK: - UITableViewDataSource
+
+extension MainListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -49,5 +54,11 @@ extension MainListViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell!
     }
+}
+
+// MARK: -  UITableViewDelegate
+
+extension MainListViewController: UITableViewDelegate {
     
 }
+
