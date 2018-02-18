@@ -13,13 +13,22 @@ class MainListViewController: UIViewController {
     //UI
     let tableView = UITableView()
     
+    //Data Source
+    var itemViewModel = ItemViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
-        
         setTableView()
+        
+        itemViewModel.getGitHubItems { [unowned self] (success) in
+            if success {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +53,7 @@ extension MainListViewController {
 extension MainListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return itemViewModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
