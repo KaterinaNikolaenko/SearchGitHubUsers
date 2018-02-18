@@ -43,7 +43,7 @@ extension MainListViewController {
     fileprivate func setTableView() {
         
         tableView.frame = CGRect(x: 0, y: 10, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "cell")
         self.view.addSubview(tableView)
     }
 }
@@ -58,16 +58,21 @@ extension MainListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = "AAAAAAA"
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! UserTableViewCell
+        let currentUser = itemViewModel.itemsArray[indexPath.row] as! User
+        cell.setUserData(user: currentUser)
+        cell.accessoryType = .disclosureIndicator
         
-        return cell!
+        return cell
     }
 }
 
 // MARK: -  UITableViewDelegate
 
 extension MainListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 70
+    }
 }
 

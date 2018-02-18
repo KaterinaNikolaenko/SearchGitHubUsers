@@ -19,6 +19,8 @@
 		067B64F02039D80200B5140A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64EF2039D80200B5140A /* Constants.swift */; };
 		067B64F22039D86400B5140A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64F12039D86400B5140A /* HttpClient.swift */; };
 		067B64F42039E0E600B5140A /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64F32039E0E600B5140A /* ItemViewModel.swift */; };
+		067B64F72039E4CA00B5140A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64F62039E4CA00B5140A /* UserTableViewCell.swift */; };
+		067B64F92039F13700B5140A /* UIFont+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64F82039F13700B5140A /* UIFont+Constraints.swift */; };
 		58A2F3D5184F286F36DD9203 /* Pods_SearchGitHubUsers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A90FA6FD1283C3BBC07C2A /* Pods_SearchGitHubUsers.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		067B64EF2039D80200B5140A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		067B64F12039D86400B5140A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		067B64F32039E0E600B5140A /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
+		067B64F62039E4CA00B5140A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		067B64F82039F13700B5140A /* UIFont+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constraints.swift"; sourceTree = "<group>"; };
 		19A90FA6FD1283C3BBC07C2A /* Pods_SearchGitHubUsers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchGitHubUsers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD6A49CBF1EFD6BBD916251 /* Pods-SearchGitHubUsers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchGitHubUsers.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchGitHubUsers/Pods-SearchGitHubUsers.release.xcconfig"; sourceTree = "<group>"; };
 		FBC5CFF000601AA4E75066C2 /* Pods-SearchGitHubUsers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchGitHubUsers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchGitHubUsers/Pods-SearchGitHubUsers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 		067B64E12039C89F00B5140A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				067B64F52039E45D00B5140A /* CustomCells */,
 				067B64CF2039A1AA00B5140A /* MainListViewController.swift */,
 			);
 			path = ViewControllers;
@@ -144,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				067B64E72039CA6800B5140A /* UIView+Constraints.swift */,
+				067B64F82039F13700B5140A /* UIFont+Constraints.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -154,6 +160,14 @@
 				067B64EF2039D80200B5140A /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		067B64F52039E45D00B5140A /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				067B64F62039E4CA00B5140A /* UserTableViewCell.swift */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		1A733A4968F623618044E692 /* Pods */ = {
@@ -312,6 +326,8 @@
 				067B64EA2039D3A000B5140A /* GitHubItem.swift in Sources */,
 				067B64F22039D86400B5140A /* HttpClient.swift in Sources */,
 				067B64D02039A1AA00B5140A /* MainListViewController.swift in Sources */,
+				067B64F72039E4CA00B5140A /* UserTableViewCell.swift in Sources */,
+				067B64F92039F13700B5140A /* UIFont+Constraints.swift in Sources */,
 				067B64EC2039D3BB00B5140A /* User.swift in Sources */,
 				067B64F02039D80200B5140A /* Constants.swift in Sources */,
 				067B64CE2039A1AA00B5140A /* AppDelegate.swift in Sources */,

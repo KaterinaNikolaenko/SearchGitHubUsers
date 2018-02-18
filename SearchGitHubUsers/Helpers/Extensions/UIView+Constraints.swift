@@ -48,4 +48,16 @@ extension UIView {
         widthAnchor.constraint(equalToConstant: height).isActive = true
         return self
     }
+    
+    @discardableResult func centerYAnchor(equalTo anchor: NSLayoutYAxisAnchor) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        centerYAnchor.constraint(equalTo: anchor).isActive = true
+        return self
+    }
+    
+    @discardableResult func centerXAnchor(equalTo anchor: NSLayoutXAxisAnchor) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        centerXAnchor.constraint(equalTo: anchor).isActive = true
+        return self
+    }
 }

@@ -17,6 +17,7 @@ struct Constants {
     }
     
     struct Font {
-        static let mainFont = UIFont(name: "Helvetica Neue", size: 12)
+        static let mainFont = UIFont(name: "Helvetica Neue", size: 16)
+        static let boldFont = UIFont(name: "Helvetica Neue", size: 16)?.bold()
     }
 }
