@@ -27,7 +27,7 @@ class UserTableViewCell: UITableViewCell {
         fatalError("init(coder:)")
     }
     
-    func setUserData(user:User) {
+    func setUserData(user:UserCellViewModel) {
         loginLabel.text = user.login
         avatarImageView.af_setImage(withURL: URL(string: user.avatarUrl!)!)
     }

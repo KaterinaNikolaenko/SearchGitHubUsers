@@ -8,25 +8,26 @@
 
 import Foundation
 
-class ItemViewModel: NSObject {
+class SearchResultsViewModel: NSObject {
     
     var itemsArray = [GitHubItem]()
+    var numberOfRowsInSection = 0
     
     // private
     fileprivate var httpClient:HttpClient = HttpClient()
-    
     
     // Get all items from GitHubAPI
     func getGitHubItems(completion: @escaping (Bool) -> ()) {
         httpClient.getUsers(successCallback: { [unowned self] (itemsArray) -> Void  in
             self.itemsArray = itemsArray
+            self.numberOfRowsInSection = itemsArray.count
             completion(true)
         }) { (error) -> Void in
             completion(false)
         }
     }
     
-    func numberOfRowsInSection() -> Int {
-        return itemsArray.count
+    func viewModelForCell(at index: Int) -> UserCellViewModel {
+        return UserCellViewModel(user: itemsArray[index] as! User)
     }
 }

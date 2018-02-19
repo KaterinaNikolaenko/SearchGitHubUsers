@@ -14,7 +14,7 @@ class MainListViewController: UIViewController {
     let tableView = UITableView()
     
     //Data Source
-    var itemViewModel = ItemViewModel()
+    var searchResultsViewModel = SearchResultsViewModel()
     
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class MainListViewController: UIViewController {
         tableView.delegate = self
         setTableView()
         
-        itemViewModel.getGitHubItems { [unowned self] (success) in
+        searchResultsViewModel.getGitHubItems { [unowned self] (success) in
             if success {
                 self.tableView.reloadData()
             }
@@ -53,13 +53,13 @@ extension MainListViewController {
 extension MainListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemViewModel.numberOfRowsInSection()
+        return searchResultsViewModel.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! UserTableViewCell
-        let currentUser = itemViewModel.itemsArray[indexPath.row] as! User
+        let currentUser = searchResultsViewModel.viewModelForCell(at: indexPath.row)
         cell.setUserData(user: currentUser)
         cell.accessoryType = .disclosureIndicator
         
