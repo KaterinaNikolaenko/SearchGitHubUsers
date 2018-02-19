@@ -28,4 +28,20 @@ class HttpClient {
         })
     }
     
+    func getRepositories(successCallback: @escaping ([Repository]) -> (), errorCallback: @escaping (String) -> ()){
+        
+        Alamofire.request(Constants.URLs.repositoriesURL).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[Repository]>) in
+            
+            guard response.response != nil else {
+                errorCallback("Error!")
+                return
+            }
+            if (response.result.isSuccess) {
+                successCallback(response.result.value!)
+            } else {
+                errorCallback("Error!")
+            }
+        })
+    }
+    
 }

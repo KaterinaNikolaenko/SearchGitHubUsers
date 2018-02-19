@@ -18,9 +18,17 @@ class SearchResultsViewModel: NSObject {
     
     // Get all items from GitHubAPI
     func getGitHubItems(completion: @escaping (Bool) -> ()) {
-        httpClient.getUsers(successCallback: { [unowned self] (itemsArray) -> Void  in
-            self.itemsArray = itemsArray
-            self.numberOfRowsInSection = itemsArray.count
+//        httpClient.getUsers(successCallback: { [unowned self] (itemsArray) -> Void  in
+//            self.itemsArray = itemsArray
+//            self.numberOfRowsInSection = itemsArray.count
+//            completion(true)
+//        }) { (error) -> Void in
+//            completion(false)
+//        }
+        
+        httpClient.getRepositories(successCallback: { [unowned self] (itemsArray1) -> Void  in
+            self.itemsArray = itemsArray1
+            self.numberOfRowsInSection = itemsArray1.count
             completion(true)
         }) { (error) -> Void in
             completion(false)

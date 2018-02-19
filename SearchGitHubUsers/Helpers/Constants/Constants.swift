@@ -13,7 +13,7 @@ struct Constants {
     
     struct URLs {
         static let usersURL = "https://api.github.com/search/users?q=christiaande"
-        static let repositoriesURL = "https://api.github.com/search/repositories?q="
+        static let repositoriesURL = "https://api.github.com/search/repositories?q=tetris"
     }
     
     struct Font {
