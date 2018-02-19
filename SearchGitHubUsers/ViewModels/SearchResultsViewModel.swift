@@ -11,35 +11,56 @@ import Foundation
 class SearchResultsViewModel: NSObject {
     
     var itemsArray = [GitHubItem]()
+    var usersArray = [GitHubItem]()
+    var repositoriesArray = [GitHubItem]()
     var numberOfRowsInSection = 0
+    let group = DispatchGroup()
     
     // private
     fileprivate var httpClient:HttpClient = HttpClient()
     
     // Get all items from GitHubAPI
     func getGitHubItems(completion: @escaping (Bool) -> ()) {
-//        httpClient.getUsers(successCallback: { [unowned self] (itemsArray) -> Void  in
-//            self.itemsArray = itemsArray
-//            self.numberOfRowsInSection = itemsArray.count
-//            completion(true)
-//        }) { (error) -> Void in
-//            completion(false)
-//        }
         
-        httpClient.getRepositories(successCallback: { [unowned self] (itemsArray1) -> Void  in
-            self.itemsArray = itemsArray1
-            self.numberOfRowsInSection = itemsArray1.count
-            completion(true)
+        group.enter()
+        httpClient.getUsers(successCallback: { [unowned self] (itemsArray) -> Void  in
+            self.usersArray = itemsArray
+            self.group.leave()
         }) { (error) -> Void in
+            self.group.leave()
             completion(false)
+        }
+        
+        group.enter()
+        httpClient.getRepositories(successCallback: { [unowned self] (itemsArray) -> Void  in
+            self.repositoriesArray = itemsArray
+            self.group.leave()
+        }) { (error) -> Void in
+            self.group.leave()
+            completion(false)
+        }
+        
+        group.notify(queue: .main) {
+            self.itemsArray = self.usersArray + self.repositoriesArray
+            self.itemsArray = self.itemsArray.sorted(by: { $0.id < $1.id })
+            self.numberOfRowsInSection = self.itemsArray.count
+            completion(true)
         }
     }
     
-    func viewModelForCell(at index: Int) -> UserCellViewModel {
-        return UserCellViewModel(user: itemsArray[index] as! User)
+    func viewModelForCell(at index: Int) -> CellViewModel {
+        if let _ = itemsArray[index] as? User {
+            return UserCellViewModel(user: itemsArray[index] as! User)
+        } else {
+            return RepositoryCellViewModel(repository: itemsArray[index] as! Repository)
+        }
     }
     
-    func viewModelForCell1(at index: Int) -> RepositoryCellViewModel {
-        return RepositoryCellViewModel(repository: itemsArray[index] as! Repository)
+    func viewModelTypeOfCell(at index: Int) -> String {
+        if let _ = itemsArray[index] as? User {
+            return "cellUser"
+        } else {
+            return "cellRepository"
+        }
     }
 }

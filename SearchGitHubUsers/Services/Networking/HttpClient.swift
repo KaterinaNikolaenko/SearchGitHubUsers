@@ -11,7 +11,7 @@ import Alamofire
 import AlamofireObjectMapper
 
 class HttpClient {
-
+    
     func getUsers(successCallback: @escaping ([User]) -> (), errorCallback: @escaping (String) -> ()){
         
         Alamofire.request(Constants.URLs.usersURL).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[User]>) in

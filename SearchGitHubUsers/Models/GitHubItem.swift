@@ -11,7 +11,7 @@ import ObjectMapper
 
 class GitHubItem: Mappable {
     
-    var id: Int?
+    var id: Int = 0
     
     required init?(map: Map) {}
     

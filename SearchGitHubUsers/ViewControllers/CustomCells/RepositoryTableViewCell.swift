@@ -32,6 +32,7 @@ class RepositoryTableViewCell: UITableViewCell {
     }
     
     func setRepositoryData(repository:RepositoryCellViewModel) {
+        
         fullNameLabel.text = repository.fullName
         descriptionLabel.text = repository.description
         languageLabel.text = repository.language
@@ -40,6 +41,7 @@ class RepositoryTableViewCell: UITableViewCell {
     }
     
     func setUI()  {
+        
         fullNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)

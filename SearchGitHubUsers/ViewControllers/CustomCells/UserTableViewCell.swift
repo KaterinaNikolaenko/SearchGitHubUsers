@@ -10,7 +10,7 @@ import UIKit
 import AlamofireImage
 
 class UserTableViewCell: UITableViewCell {
-
+    
     //UI
     let loginLabel = UILabel()
     let avatarImageView = UIImageView()
@@ -28,11 +28,13 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func setUserData(user:UserCellViewModel) {
+        
         loginLabel.text = user.login
         avatarImageView.af_setImage(withURL: URL(string: user.avatarUrl!)!)
     }
     
     func setUI()  {
+        
         loginLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
         contentView.addSubview(loginLabel)

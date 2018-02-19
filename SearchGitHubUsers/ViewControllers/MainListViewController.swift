@@ -9,13 +9,12 @@
 import UIKit
 
 class MainListViewController: UIViewController {
-
+    
     //UI
     let tableView = UITableView()
     
     //Data Source
     var searchResultsViewModel = SearchResultsViewModel()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,7 @@ class MainListViewController: UIViewController {
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -59,15 +58,19 @@ extension MainListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cellUser") as! UserTableViewCell
-//        let currentUser = searchResultsViewModel.viewModelForCell(at: indexPath.row)
-//        cell.setUserData(user: currentUser)
-//        cell.accessoryType = .disclosureIndicator
-        
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cellRepository") as! RepositoryTableViewCell
-        let currentRepository = searchResultsViewModel.viewModelForCell1(at: indexPath.row)
-        cell.setRepositoryData(repository: currentRepository)
-        return cell
+        let cellIdentifier = searchResultsViewModel.viewModelTypeOfCell(at: indexPath.row)
+        if cellIdentifier == "cellUser" {
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! UserTableViewCell
+            let currentUser = searchResultsViewModel.viewModelForCell(at: indexPath.row)
+            cell.setUserData(user: currentUser as! UserCellViewModel)
+            cell.accessoryType = .disclosureIndicator
+            return cell
+        } else {
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! RepositoryTableViewCell
+            let currentRepository = searchResultsViewModel.viewModelForCell(at: indexPath.row)
+            cell.setRepositoryData(repository: currentRepository as! RepositoryCellViewModel)
+            return cell
+        }
     }
 }
 
@@ -75,7 +78,6 @@ extension MainListViewController: UITableViewDataSource {
 
 extension MainListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 80
     }
 }
