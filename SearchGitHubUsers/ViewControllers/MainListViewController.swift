@@ -19,15 +19,13 @@ class MainListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUI()
         setTableView()
         
         itemsSearchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
-    
-        updateData(title: "")
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,6 +39,9 @@ extension MainListViewController  {
     
     fileprivate func setUI() {
         
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backButton
+        navigationController?.navigationBar.barStyle = .blackTranslucent
         self.title = "Users and repositories"
         
         itemsSearchBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 50)
@@ -60,8 +61,8 @@ extension MainListViewController  {
         self.view.addSubview(tableView)
     }
     
-    func updateData(title: String) {
-        searchResultsViewModel.getGitHubItems(title: title) { [unowned self] (success) in
+    func updateData() {
+        searchResultsViewModel.getGitHubItems(query: self.searchResultsViewModel.query) { [unowned self] (success) in
             if success {
                 self.tableView.reloadData()
             }
@@ -98,6 +99,7 @@ extension MainListViewController: UITableViewDataSource {
 // MARK: -  UITableViewDelegate
 
 extension MainListViewController: UITableViewDelegate {
+  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -105,26 +107,33 @@ extension MainListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellIdentifier = searchResultsViewModel.viewModelTypeOfCell(at: indexPath.row)
         if cellIdentifier == "cellUser" {
-            //        let detailViewController = DetailsOfBlogViewController()
-            //        detailViewController.postViewModel = postViewModel
-            //        detailViewController.view.backgroundColor = .white
-            //
-            //        self.navigationController?.pushViewController(detailViewController, animated: true)
+            let userPortfolioViewController = UserPortfolioViewController()
+            userPortfolioViewController.userCellViewModel = searchResultsViewModel.viewModelForCell(at: indexPath.row) as? UserCellViewModel
+            userPortfolioViewController.view.backgroundColor = .white
+            navigationController?.pushViewController(userPortfolioViewController, animated: true)
         }
     }
 }
 
 // MARK: -  UISearchBarDelegate
 
-extension MainListViewController: UISearchBarDelegate {
+extension MainListViewController : UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+       
         itemsSearchBar.text = ""
-        updateData(title: "")
+        searchResultsViewModel.query = ""
+        updateData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        updateData(title: searchText)
+        
+        self.searchResultsViewModel.query = searchText
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(searchCompleted), object: nil)
+        self.perform(#selector(searchCompleted), with: nil, afterDelay: 0.5)
+    }
+    
+    @objc func searchCompleted() {
+        self.updateData()
     }
 }
-

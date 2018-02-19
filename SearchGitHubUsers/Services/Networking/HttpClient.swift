@@ -12,9 +12,13 @@ import AlamofireObjectMapper
 
 class HttpClient {
     
-    func getUsers(title: String, successCallback: @escaping ([User]) -> (), errorCallback: @escaping (String) -> ()){
+    func getUsers(query: String, successCallback: @escaping ([User]) -> (), errorCallback: @escaping (String) -> ()){
         
-        Alamofire.request(Constants.URLs.usersURL + title).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[User]>) in
+        if query == "" {
+           errorCallback("Error!")
+           return
+        }
+        Alamofire.request(Constants.URLs.usersURL + query).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[User]>) in
             
             guard response.response != nil else {
                 errorCallback("Error!")
@@ -28,9 +32,13 @@ class HttpClient {
         })
     }
     
-    func getRepositories(title: String, successCallback: @escaping ([Repository]) -> (), errorCallback: @escaping (String) -> ()){
+    func getRepositories(query: String, successCallback: @escaping ([Repository]) -> (), errorCallback: @escaping (String) -> ()){
         
-        Alamofire.request(Constants.URLs.repositoriesURL + title).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[Repository]>) in
+        if query == "" {
+            errorCallback("Error!")
+            return
+        }
+        Alamofire.request(Constants.URLs.repositoriesURL + query).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[Repository]>) in
             
             guard response.response != nil else {
                 errorCallback("Error!")
