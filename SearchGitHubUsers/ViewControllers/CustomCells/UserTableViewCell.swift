@@ -30,9 +30,9 @@ class UserTableViewCell: UITableViewCell {
     func setUserData(user:UserCellViewModel) {
         
         loginLabel.text = user.login
-        avatarImageView.af_setImage(withURL: URL(string: user.avatarUrl!)!)
+        avatarImageView.af_setImage(withURL: URL(string: user.avatarUrl!)!, placeholderImage: UIImage(named: "placeholder"))
     }
-    
+
     func setUI()  {
         
         loginLabel.font = UIFont.boldSystemFont(ofSize: 16)
