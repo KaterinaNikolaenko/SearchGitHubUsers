@@ -20,10 +20,11 @@ class SearchResultsViewModel: NSObject {
     fileprivate var httpClient:HttpClient = HttpClient()
     
     // Get all items from GitHubAPI
-    func getGitHubItems(completion: @escaping (Bool) -> ()) {
+    func getGitHubItems(title: String, completion: @escaping (Bool) -> ()) {
         
+        itemsArray.removeAll()
         group.enter()
-        httpClient.getUsers(successCallback: { [unowned self] (itemsArray) -> Void  in
+        httpClient.getUsers(title: title, successCallback: { [unowned self] (itemsArray) -> Void  in
             self.usersArray = itemsArray
             self.group.leave()
         }) { (error) -> Void in
@@ -32,7 +33,7 @@ class SearchResultsViewModel: NSObject {
         }
         
         group.enter()
-        httpClient.getRepositories(successCallback: { [unowned self] (itemsArray) -> Void  in
+        httpClient.getRepositories(title: title, successCallback: { [unowned self] (itemsArray) -> Void  in
             self.repositoriesArray = itemsArray
             self.group.leave()
         }) { (error) -> Void in

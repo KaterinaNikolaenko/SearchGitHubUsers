@@ -12,8 +12,8 @@ import AlamofireImage
 class UserTableViewCell: UITableViewCell {
     
     //UI
-    let loginLabel = UILabel()
-    let avatarImageView = UIImageView()
+    private let loginLabel = UILabel()
+    private let avatarImageView = UIImageView()
     
     // MARK: - LifeCycle
     

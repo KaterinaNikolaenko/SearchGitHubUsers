@@ -11,7 +11,8 @@ import UIKit
 class MainListViewController: UIViewController {
     
     //UI
-    let tableView = UITableView()
+    private let tableView = UITableView()
+    private var itemsSearchBar = UISearchBar()
     
     //Data Source
     var searchResultsViewModel = SearchResultsViewModel()
@@ -19,17 +20,14 @@ class MainListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Users and repositories"
-        
-        tableView.dataSource = self
-        tableView.delegate = self
+        setUI()
         setTableView()
         
-        searchResultsViewModel.getGitHubItems { [unowned self] (success) in
-            if success {
-                self.tableView.reloadData()
-            }
-        }
+        itemsSearchBar.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
+    
+        updateData(title: "")
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,14 +37,35 @@ class MainListViewController: UIViewController {
 
 // MARK: - Private
 
-extension MainListViewController {
+extension MainListViewController  {
+    
+    fileprivate func setUI() {
+        
+        self.title = "Users and repositories"
+        
+        itemsSearchBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 50)
+        itemsSearchBar.showsCancelButton = true
+        itemsSearchBar.placeholder = "Input text"
+        itemsSearchBar.tintColor = UIColor.CustomColors.darkBlue
+        itemsSearchBar.searchBarStyle = UISearchBarStyle.default
+        
+        self.view.addSubview(itemsSearchBar)
+    }
     
     fileprivate func setTableView() {
         
-        tableView.frame = CGRect(x: 0, y: 10, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        tableView.frame = CGRect(x: 0, y: 50, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "cellUser")
         tableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: "cellRepository")
         self.view.addSubview(tableView)
+    }
+    
+    func updateData(title: String) {
+        searchResultsViewModel.getGitHubItems(title: title) { [unowned self] (success) in
+            if success {
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -81,6 +100,31 @@ extension MainListViewController: UITableViewDataSource {
 extension MainListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellIdentifier = searchResultsViewModel.viewModelTypeOfCell(at: indexPath.row)
+        if cellIdentifier == "cellUser" {
+            //        let detailViewController = DetailsOfBlogViewController()
+            //        detailViewController.postViewModel = postViewModel
+            //        detailViewController.view.backgroundColor = .white
+            //
+            //        self.navigationController?.pushViewController(detailViewController, animated: true)
+        }
+    }
+}
+
+// MARK: -  UISearchBarDelegate
+
+extension MainListViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        itemsSearchBar.text = ""
+        updateData(title: "")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        updateData(title: searchText)
     }
 }
 

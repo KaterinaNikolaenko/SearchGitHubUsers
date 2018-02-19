@@ -11,13 +11,13 @@ import UIKit
 class RepositoryTableViewCell: UITableViewCell {
 
     //UI
-    let fullNameLabel = UILabel()
-    let descriptionLabel = UILabel()
-    let languageLabel = UILabel()
-    let forksСountLabel = UILabel()
-    let watchersСountLabel = UILabel()
-    let forksImageView = UIImageView()
-    let watchersImageView = UIImageView()
+    private let fullNameLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let languageLabel = UILabel()
+    private let forksСountLabel = UILabel()
+    private let watchersСountLabel = UILabel()
+    private let forksImageView = UIImageView()
+    private let watchersImageView = UIImageView()
     
     // MARK: - LifeCycle
     

@@ -12,9 +12,9 @@ import AlamofireObjectMapper
 
 class HttpClient {
     
-    func getUsers(successCallback: @escaping ([User]) -> (), errorCallback: @escaping (String) -> ()){
+    func getUsers(title: String, successCallback: @escaping ([User]) -> (), errorCallback: @escaping (String) -> ()){
         
-        Alamofire.request(Constants.URLs.usersURL).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[User]>) in
+        Alamofire.request(Constants.URLs.usersURL + title).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[User]>) in
             
             guard response.response != nil else {
                 errorCallback("Error!")
@@ -28,9 +28,9 @@ class HttpClient {
         })
     }
     
-    func getRepositories(successCallback: @escaping ([Repository]) -> (), errorCallback: @escaping (String) -> ()){
+    func getRepositories(title: String, successCallback: @escaping ([Repository]) -> (), errorCallback: @escaping (String) -> ()){
         
-        Alamofire.request(Constants.URLs.repositoriesURL).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[Repository]>) in
+        Alamofire.request(Constants.URLs.repositoriesURL + title).responseArray(keyPath: "items", completionHandler: { (response: DataResponse<[Repository]>) in
             
             guard response.response != nil else {
                 errorCallback("Error!")
