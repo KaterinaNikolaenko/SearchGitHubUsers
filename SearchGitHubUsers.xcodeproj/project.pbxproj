@@ -23,6 +23,8 @@
 		067B64F92039F13700B5140A /* UIFont+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64F82039F13700B5140A /* UIFont+Constraints.swift */; };
 		067B64FB203A010500B5140A /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64FA203A010500B5140A /* Dynamic.swift */; };
 		067B64FD203A040600B5140A /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64FC203A040600B5140A /* UserCellViewModel.swift */; };
+		067B6500203AE02200B5140A /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B64FF203AE02200B5140A /* CellViewModel.swift */; };
+		067B6502203AE03F00B5140A /* RepositoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B6501203AE03F00B5140A /* RepositoryCellViewModel.swift */; };
 		58A2F3D5184F286F36DD9203 /* Pods_SearchGitHubUsers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A90FA6FD1283C3BBC07C2A /* Pods_SearchGitHubUsers.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		067B64F82039F13700B5140A /* UIFont+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constraints.swift"; sourceTree = "<group>"; };
 		067B64FA203A010500B5140A /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		067B64FC203A040600B5140A /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
+		067B64FF203AE02200B5140A /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		067B6501203AE03F00B5140A /* RepositoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCellViewModel.swift; sourceTree = "<group>"; };
 		19A90FA6FD1283C3BBC07C2A /* Pods_SearchGitHubUsers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchGitHubUsers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD6A49CBF1EFD6BBD916251 /* Pods-SearchGitHubUsers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchGitHubUsers.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchGitHubUsers/Pods-SearchGitHubUsers.release.xcconfig"; sourceTree = "<group>"; };
 		FBC5CFF000601AA4E75066C2 /* Pods-SearchGitHubUsers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchGitHubUsers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchGitHubUsers/Pods-SearchGitHubUsers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,8 +114,8 @@
 		067B64E02039C89400B5140A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				067B64FE203ADFE600B5140A /* CellViewModels */,
 				067B64F32039E0E600B5140A /* SearchResultsViewModel.swift */,
-				067B64FC203A040600B5140A /* UserCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -174,6 +178,16 @@
 				067B64F62039E4CA00B5140A /* UserTableViewCell.swift */,
 			);
 			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		067B64FE203ADFE600B5140A /* CellViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				067B64FF203AE02200B5140A /* CellViewModel.swift */,
+				067B64FC203A040600B5140A /* UserCellViewModel.swift */,
+				067B6501203AE03F00B5140A /* RepositoryCellViewModel.swift */,
+			);
+			path = CellViewModels;
 			sourceTree = "<group>";
 		};
 		1A733A4968F623618044E692 /* Pods */ = {
@@ -338,6 +352,8 @@
 				067B64EC2039D3BB00B5140A /* User.swift in Sources */,
 				067B64F02039D80200B5140A /* Constants.swift in Sources */,
 				067B64CE2039A1AA00B5140A /* AppDelegate.swift in Sources */,
+				067B6502203AE03F00B5140A /* RepositoryCellViewModel.swift in Sources */,
+				067B6500203AE02200B5140A /* CellViewModel.swift in Sources */,
 				067B64FB203A010500B5140A /* Dynamic.swift in Sources */,
 				067B64EE2039D4B300B5140A /* Repository.swift in Sources */,
 				067B64F42039E0E600B5140A /* SearchResultsViewModel.swift in Sources */,

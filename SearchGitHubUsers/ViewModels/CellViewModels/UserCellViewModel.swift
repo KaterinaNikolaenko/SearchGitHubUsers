@@ -8,9 +8,8 @@
 
 import Foundation
 
-class UserCellViewModel {
-   
-    var id: Int?
+class UserCellViewModel: CellViewModel {
+    
     var urlDetails: String?
     var avatarUrl: String?
     var login: String?
@@ -18,7 +17,8 @@ class UserCellViewModel {
     var publicRepos: Int?
     
     init(user:User) {
-        self.id = user.id
+        super.init(item: user)
+        
         self.urlDetails = user.urlDetails
         self.avatarUrl = user.avatarUrl
         self.login = user.login
