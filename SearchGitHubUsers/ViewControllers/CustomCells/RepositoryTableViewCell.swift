@@ -43,19 +43,20 @@ class RepositoryTableViewCell: UITableViewCell {
     func setUI()  {
         
         fullNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        fullNameLabel.textColor = UIColor.CustomColors.darkBlue
         
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.textColor = UIColor.gray
         descriptionLabel.adjustsFontSizeToFitWidth = false
         descriptionLabel.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
-        languageLabel.font = UIFont.systemFont(ofSize: 13)
+        languageLabel.font = UIFont.systemFont(ofSize: 11)
         languageLabel.textColor = UIColor.gray
         
-        forksСountLabel.font = UIFont.systemFont(ofSize: 13)
+        forksСountLabel.font = UIFont.systemFont(ofSize: 11)
         forksСountLabel.textColor = UIColor.gray
         
-        watchersСountLabel.font = UIFont.systemFont(ofSize: 13)
+        watchersСountLabel.font = UIFont.systemFont(ofSize: 11)
         watchersСountLabel.textColor = UIColor.gray
         
         forksImageView.image = UIImage(named: "branch")

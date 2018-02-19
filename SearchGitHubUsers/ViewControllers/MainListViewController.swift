@@ -18,6 +18,8 @@ class MainListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = "Users and repositories"
         
         tableView.dataSource = self
         tableView.delegate = self
