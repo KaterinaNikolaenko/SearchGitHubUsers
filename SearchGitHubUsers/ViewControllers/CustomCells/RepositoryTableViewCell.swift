@@ -31,7 +31,7 @@ class RepositoryTableViewCell: UITableViewCell {
         fatalError("init(coder:)")
     }
     
-    func setUserData(repository:RepositoryCellViewModel) {
+    func setRepositoryData(repository:RepositoryCellViewModel) {
         fullNameLabel.text = repository.fullName
         descriptionLabel.text = repository.description
         languageLabel.text = repository.language
@@ -40,18 +40,20 @@ class RepositoryTableViewCell: UITableViewCell {
     }
     
     func setUI()  {
-        fullNameLabel.font = Constants.Font.boldFont
+        fullNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
-        descriptionLabel.font = Constants.Font.mainSmallFont
+        descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.textColor = UIColor.gray
+        descriptionLabel.adjustsFontSizeToFitWidth = false
+        descriptionLabel.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
-        languageLabel.font = Constants.Font.mainSmallFont
+        languageLabel.font = UIFont.systemFont(ofSize: 13)
         languageLabel.textColor = UIColor.gray
         
-        forksСountLabel.font = Constants.Font.mainSmallFont
+        forksСountLabel.font = UIFont.systemFont(ofSize: 13)
         forksСountLabel.textColor = UIColor.gray
         
-        watchersСountLabel.font = Constants.Font.mainSmallFont
+        watchersСountLabel.font = UIFont.systemFont(ofSize: 13)
         watchersСountLabel.textColor = UIColor.gray
         
         forksImageView.image = UIImage(named: "branch")
@@ -72,29 +74,30 @@ class RepositoryTableViewCell: UITableViewCell {
         descriptionLabel
             .leadingAnchor(equalTo: contentView.leadingAnchor, constant: 10)
             .topAnchor(equalTo: fullNameLabel.bottomAnchor, constant: 5)
+            .widthAnchor(equalTo: UIScreen.main.bounds.size.width - 20)
         
         languageLabel
             .leadingAnchor(equalTo: contentView.leadingAnchor, constant: 10)
             .topAnchor(equalTo: descriptionLabel.bottomAnchor, constant: 5)
         
         forksImageView
-            .leadingAnchor(equalTo: languageLabel.trailingAnchor, constant: 3)
+            .leadingAnchor(equalTo: languageLabel.trailingAnchor, constant: 10)
             .topAnchor(equalTo: descriptionLabel.bottomAnchor, constant: 5)
-            .heightAnchor(equalTo: 10)
-            .widthAnchor(equalTo: 10)
+            .heightAnchor(equalTo: 15)
+            .widthAnchor(equalTo: 15)
       
         forksСountLabel
-            .leadingAnchor(equalTo: forksImageView.trailingAnchor, constant: 3)
+            .leadingAnchor(equalTo: forksImageView.trailingAnchor, constant: 5)
             .topAnchor(equalTo: descriptionLabel.bottomAnchor, constant: 5)
        
         watchersImageView
-            .leadingAnchor(equalTo: forksСountLabel.trailingAnchor, constant: 3)
+            .leadingAnchor(equalTo: forksСountLabel.trailingAnchor, constant: 10)
             .topAnchor(equalTo: descriptionLabel.bottomAnchor, constant: 5)
-            .heightAnchor(equalTo: 10)
-            .widthAnchor(equalTo: 10)
+            .heightAnchor(equalTo: 15)
+            .widthAnchor(equalTo: 15)
        
         watchersСountLabel
-            .leadingAnchor(equalTo: watchersImageView.trailingAnchor, constant: 3)
+            .leadingAnchor(equalTo: watchersImageView.trailingAnchor, constant: 5)
             .topAnchor(equalTo: descriptionLabel.bottomAnchor, constant: 5)
     }
 }

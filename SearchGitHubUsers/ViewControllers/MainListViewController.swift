@@ -43,7 +43,8 @@ extension MainListViewController {
     fileprivate func setTableView() {
         
         tableView.frame = CGRect(x: 0, y: 10, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "cellUser")
+        tableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: "cellRepository")
         self.view.addSubview(tableView)
     }
 }
@@ -58,11 +59,14 @@ extension MainListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! UserTableViewCell
-        let currentUser = searchResultsViewModel.viewModelForCell(at: indexPath.row)
-        cell.setUserData(user: currentUser)
-        cell.accessoryType = .disclosureIndicator
+//        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cellUser") as! UserTableViewCell
+//        let currentUser = searchResultsViewModel.viewModelForCell(at: indexPath.row)
+//        cell.setUserData(user: currentUser)
+//        cell.accessoryType = .disclosureIndicator
         
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cellRepository") as! RepositoryTableViewCell
+        let currentRepository = searchResultsViewModel.viewModelForCell1(at: indexPath.row)
+        cell.setRepositoryData(repository: currentRepository)
         return cell
     }
 }
@@ -72,7 +76,7 @@ extension MainListViewController: UITableViewDataSource {
 extension MainListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 70
+        return 80
     }
 }
 

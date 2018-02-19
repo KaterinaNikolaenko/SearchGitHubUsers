@@ -14,8 +14,8 @@ class RepositoryCellViewModel: CellViewModel {
     var fullName: String?
     var description: String?
     var language: String?
-    var forksСount: Int?
-    var watchersСount: Int?
+    var forksСount: Int = 0
+    var watchersСount: Int = 0
     
     init(repository: Repository) {
         super.init(item: repository)
@@ -24,7 +24,7 @@ class RepositoryCellViewModel: CellViewModel {
         self.fullName = repository.fullName
         self.description = repository.description
         self.language = repository.language
-        self.forksСount = repository.forksСount
-        self.watchersСount = repository.watchersСount
+        self.forksСount = repository.forksСount!
+        self.watchersСount = repository.watchersСount!
     }
 }

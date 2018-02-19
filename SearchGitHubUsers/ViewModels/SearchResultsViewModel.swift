@@ -38,4 +38,8 @@ class SearchResultsViewModel: NSObject {
     func viewModelForCell(at index: Int) -> UserCellViewModel {
         return UserCellViewModel(user: itemsArray[index] as! User)
     }
+    
+    func viewModelForCell1(at index: Int) -> RepositoryCellViewModel {
+        return RepositoryCellViewModel(repository: itemsArray[index] as! Repository)
+    }
 }

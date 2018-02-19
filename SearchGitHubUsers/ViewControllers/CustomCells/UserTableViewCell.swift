@@ -33,7 +33,7 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func setUI()  {
-        loginLabel.font = Constants.Font.boldFont
+        loginLabel.font = UIFont.boldSystemFont(ofSize: 16)
         
         contentView.addSubview(loginLabel)
         contentView.addSubview(avatarImageView)
