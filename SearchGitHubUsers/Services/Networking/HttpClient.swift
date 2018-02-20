@@ -17,6 +17,7 @@ class HttpClient {
     var clientID: String = "fd574e31c493c01de944"
     var clientSecret: String = "f87d2033cac47ad73327fa7eb2541d53b8c1e126"
     
+    // Set headers with access_token
     func setHeaders() -> [String:String]? {
         if UserDefaults.standard.string(forKey: "access_token") != nil {
             let headers = [
@@ -28,6 +29,7 @@ class HttpClient {
         }
     }
     
+    //Authorization on GitHub
     func startOAuth2Login()
     {
         let authPath:String = "https://github.com/login/oauth/authorize?client_id=\(clientID)&scope=repo&state=TEST_STATE"
@@ -115,9 +117,9 @@ class HttpClient {
         })
     }
     
+    //Parsing access_token from GitHub
     func processOAuthStep1Response(url: NSURL)
     {
-        print(url)
         let components = NSURLComponents(url: url as URL, resolvingAgainstBaseURL: false)
         var code:String?
         if let queryItems = components?.queryItems
@@ -139,6 +141,7 @@ class HttpClient {
                 if let anError = response.error
                 {
                     print(anError)
+                    UserDefaults.standard.removeObject(forKey: "access_token")
                 }
                 let results = response.result.value
                 if let receivedResults = results
