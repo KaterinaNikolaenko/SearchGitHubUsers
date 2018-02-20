@@ -50,6 +50,15 @@ extension MainListViewController  {
     
     fileprivate func setUI() {
         
+        if UserDefaults.standard.string(forKey: "access_token") == nil {
+            let alert = UIAlertController(title: "Authorization", message: "Would you like to authorize?", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: { action in
+                HttpClient.sharedInstance.startOAuth2Login()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton
         navigationController?.navigationBar.barStyle = .blackTranslucent

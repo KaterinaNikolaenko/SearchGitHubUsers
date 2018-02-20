@@ -26,7 +26,7 @@ class PortfolioViewModel: NSObject {
         }
     }
     
-    func getUserStarts(userCellViewModel: UserCellViewModel, completion: @escaping (Bool, String?) -> ()) {
+    func getUserStarts(userCellViewModel: UserCellViewModel, completion: @escaping (Bool, Int?) -> ()) {
         
         self.httpClient.getUserStarts(starredURL: (userCellViewModel.starredUrl!), successCallback: { (numberStarts) -> Void in
             completion(true, numberStarts)

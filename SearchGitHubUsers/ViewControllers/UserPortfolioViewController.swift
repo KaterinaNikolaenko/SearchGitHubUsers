@@ -38,7 +38,7 @@ class UserPortfolioViewController: UIViewController {
                 self.portfolioViewModel.getUserStarts(userCellViewModel: userCellViewModel!, completion: { [unowned self] (success, numberStarts) in
                     if success {
                         self.userCellViewModel?.starreds = Int(numberStarts!)
-                        self.starredCountLabel.text = numberStarts
+                        self.starredCountLabel.text = String(describing: numberStarts!)
                     }
                 })
             }
