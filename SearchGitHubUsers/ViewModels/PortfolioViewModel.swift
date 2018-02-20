@@ -15,10 +15,10 @@ class PortfolioViewModel: NSObject {
     
     func getUserDetails(userCellViewModel: UserCellViewModel, completion: @escaping (Bool, UserCellViewModel?) -> ()) {
         
-        httpClient.getUserDetails(userURL: (userCellViewModel.urlDetails)!, successCallback: { (CurrentUser) -> Void in
-            userCellViewModel.fullName = CurrentUser.fullName
-            userCellViewModel.followers = CurrentUser.followers
-            userCellViewModel.publicRepos = CurrentUser.publicRepos
+        httpClient.getUserDetails(userURL: (userCellViewModel.urlDetails)!, successCallback: { (currentUser) -> Void in
+            userCellViewModel.fullName = currentUser.fullName
+            userCellViewModel.followers = currentUser.followers
+            userCellViewModel.publicRepos = currentUser.publicRepos
             userCellViewModel.starredUrl = (userCellViewModel.urlDetails)! + "/starred"
             completion(true, userCellViewModel)
         }) { (error) -> Void in
@@ -26,7 +26,7 @@ class PortfolioViewModel: NSObject {
         }
     }
     
-    func getUserStarts(userCellViewModel: UserCellViewModel, completion: @escaping (Bool, Int?) -> ()) {
+    func getUserStars(userCellViewModel: UserCellViewModel, completion: @escaping (Bool, Int?) -> ()) {
         
         self.httpClient.getUserStarts(starredURL: (userCellViewModel.starredUrl!), successCallback: { (numberStarts) -> Void in
             completion(true, numberStarts)

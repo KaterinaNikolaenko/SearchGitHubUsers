@@ -35,6 +35,7 @@ class HttpClient {
         let authPath:String = "https://github.com/login/oauth/authorize?client_id=\(clientID)&scope=repo&state=TEST_STATE"
         if let authURL:URL = URL(string: authPath)
         {
+            print(authURL)
             UIApplication.shared.open(authURL, options: [:], completionHandler: nil)
         }
     }
@@ -105,14 +106,27 @@ class HttpClient {
             errorCallback("Error!")
             return
         }
-        Alamofire.request(starredURL, headers: setHeaders()).responseArray(completionHandler: { (response: DataResponse<[Starred]>) in
+        let paginatedStarredURL = starredURL + "?per_page=1&page=1"
+        
+        Alamofire.request(paginatedStarredURL, headers: setHeaders()).responseArray(completionHandler: { (response: DataResponse<[Starred]>) in
             
             guard response.response != nil else {
                 errorCallback("Error!")
                 return
             }
-            if response.result.value != nil {
-                successCallback((response.result.value?.count)!)
+            
+            if let linkHeader = response.response?.allHeaderFields["Link"] as? String {
+                
+                let regex = try! NSRegularExpression(pattern: "[\\?\\&]page=(?<page>\\d+)>; rel=\"last\"")
+                let match = regex.firstMatch(in: linkHeader, range: NSMakeRange(0, linkHeader.count))!
+                
+                let nsString = linkHeader as NSString
+                if let lastPage = Int(nsString.substring(with: match.range(withName: "page"))) {
+                    successCallback(lastPage)
+                }
+                errorCallback("Error!")
+            } else {
+                errorCallback("Error!")
             }
         })
     }
