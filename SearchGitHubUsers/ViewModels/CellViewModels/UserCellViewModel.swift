@@ -15,6 +15,9 @@ class UserCellViewModel: CellViewModel {
     var login: String?
     var followers: Int?
     var publicRepos: Int?
+    var fullName: String?
+    var starreds: Int?
+    var starredUrl: String?
     
     init(user:User) {
         super.init(item: user)
@@ -24,5 +27,8 @@ class UserCellViewModel: CellViewModel {
         self.login = user.login
         self.followers = user.followers
         self.publicRepos = user.publicRepos
+        self.fullName = user.fullName
+        self.starreds = 0
+        self.starredUrl = ""
     }
 }

@@ -27,6 +27,8 @@
 		067B6504203AE4A300B5140A /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B6503203AE4A300B5140A /* RepositoryTableViewCell.swift */; };
 		067B6506203B2E0800B5140A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B6505203B2E0800B5140A /* UIColor+Extension.swift */; };
 		067B6508203B425A00B5140A /* UserPortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067B6507203B425900B5140A /* UserPortfolioViewController.swift */; };
+		06CF70DE203B875700B365B2 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF70DD203B875700B365B2 /* PortfolioViewModel.swift */; };
+		06CF70E0203B909300B365B2 /* Starred.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF70DF203B909300B365B2 /* Starred.swift */; };
 		58A2F3D5184F286F36DD9203 /* Pods_SearchGitHubUsers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A90FA6FD1283C3BBC07C2A /* Pods_SearchGitHubUsers.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		067B6503203AE4A300B5140A /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		067B6505203B2E0800B5140A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		067B6507203B425900B5140A /* UserPortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPortfolioViewController.swift; sourceTree = "<group>"; };
+		06CF70DD203B875700B365B2 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
+		06CF70DF203B909300B365B2 /* Starred.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starred.swift; sourceTree = "<group>"; };
 		19A90FA6FD1283C3BBC07C2A /* Pods_SearchGitHubUsers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchGitHubUsers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD6A49CBF1EFD6BBD916251 /* Pods-SearchGitHubUsers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchGitHubUsers.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchGitHubUsers/Pods-SearchGitHubUsers.release.xcconfig"; sourceTree = "<group>"; };
 		FBC5CFF000601AA4E75066C2 /* Pods-SearchGitHubUsers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchGitHubUsers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchGitHubUsers/Pods-SearchGitHubUsers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				067B64E92039D3A000B5140A /* GitHubItem.swift */,
 				067B64EB2039D3BB00B5140A /* User.swift */,
 				067B64ED2039D4B300B5140A /* Repository.swift */,
+				06CF70DF203B909300B365B2 /* Starred.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			children = (
 				067B64FE203ADFE600B5140A /* CellViewModels */,
 				067B64F32039E0E600B5140A /* SearchResultsViewModel.swift */,
+				06CF70DD203B875700B365B2 /* PortfolioViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -356,9 +362,11 @@
 				067B64F72039E4CA00B5140A /* UserTableViewCell.swift in Sources */,
 				067B64EC2039D3BB00B5140A /* User.swift in Sources */,
 				067B6506203B2E0800B5140A /* UIColor+Extension.swift in Sources */,
+				06CF70E0203B909300B365B2 /* Starred.swift in Sources */,
 				067B64F02039D80200B5140A /* Constants.swift in Sources */,
 				067B64CE2039A1AA00B5140A /* AppDelegate.swift in Sources */,
 				067B6502203AE03F00B5140A /* RepositoryCellViewModel.swift in Sources */,
+				06CF70DE203B875700B365B2 /* PortfolioViewModel.swift in Sources */,
 				067B6504203AE4A300B5140A /* RepositoryTableViewCell.swift in Sources */,
 				067B6508203B425A00B5140A /* UserPortfolioViewController.swift in Sources */,
 				067B6500203AE02200B5140A /* CellViewModel.swift in Sources */,

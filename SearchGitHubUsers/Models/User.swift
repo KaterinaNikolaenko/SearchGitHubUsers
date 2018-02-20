@@ -16,8 +16,7 @@ class User: GitHubItem {
     var login: String?
     var followers: Int?
     var publicRepos: Int?
-//    var name: String?
-//    var starred: Int?
+    var fullName: String?
     
     required init?(map: Map) {
         super.init(map: map)
@@ -31,5 +30,6 @@ class User: GitHubItem {
         login <- map["login"]
         followers <- map["followers"]
         publicRepos <- map["public_repos"]
+        fullName <- map["name"]
     }
 }
