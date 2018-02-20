@@ -13,6 +13,7 @@ class MainListViewController: UIViewController {
     //UI
     private let tableView = UITableView()
     private var itemsSearchBar = UISearchBar()
+    private var refreshControl: UIRefreshControl!
     
     //Data Source
     var searchResultsViewModel = SearchResultsViewModel()
@@ -26,6 +27,16 @@ class MainListViewController: UIViewController {
         itemsSearchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        
+        //Refresh table
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh...")
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func refreshTable(sender:AnyObject) {
+        self.updateData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,6 +69,7 @@ extension MainListViewController  {
         tableView.frame = CGRect(x: 0, y: 50, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "cellUser")
         tableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: "cellRepository")
+        tableView.keyboardDismissMode = .onDrag
         self.view.addSubview(tableView)
     }
     
@@ -65,6 +77,13 @@ extension MainListViewController  {
         searchResultsViewModel.getGitHubItems(query: self.searchResultsViewModel.query) { [unowned self] (success) in
             if success {
                 self.tableView.reloadData()
+                if self.refreshControl != nil {
+                    self.refreshControl.endRefreshing()
+                }
+            } else {
+                if self.refreshControl != nil {
+                    self.refreshControl.endRefreshing()
+                }
             }
         }
     }
@@ -131,6 +150,11 @@ extension MainListViewController : UISearchBarDelegate {
         self.searchResultsViewModel.query = searchText
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(searchCompleted), object: nil)
         self.perform(#selector(searchCompleted), with: nil, afterDelay: 0.5)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        self.itemsSearchBar.endEditing(true)
     }
     
     @objc func searchCompleted() {

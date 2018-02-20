@@ -127,7 +127,7 @@ extension UserPortfolioViewController  {
     
     fileprivate func setUserData() {
         
-        fullNameLabel.text = userCellViewModel?.fullName ?? ""
+        fullNameLabel.text = userCellViewModel?.fullName ?? " "
         if let followers = userCellViewModel?.followers {
             followersCountLabel.text = String(describing: followers)
         } else {
